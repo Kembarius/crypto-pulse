@@ -141,6 +141,7 @@ button:hover {
     .second-details {
         gap: 1em;
         overflow-x: auto;
+        -webkit-overflow-scrolling: touch; /* smooth on iOS */
         scrollbar-width: none;
         font-size: 0.8rem;
     }
@@ -183,10 +184,18 @@ button:hover {
     .first-details {
        min-width: 260px; 
     }
+    .second-details {
+        gap: 1em;
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
     .coin-info-row-flex, .coin-row-flex {
         width: 90vw;
     }
     .coin-ticker {
         display: none;
+    }
+    p.coin-volume {
+        min-width: max-content;
     }
 }
