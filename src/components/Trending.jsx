@@ -5,11 +5,12 @@ import TrendingCoin from './TrendingCoin'
 export default function Trending() {
     
     const [trending, setTrending] = useState([])
+    const coinGeckoAPI = import.meta.env.VITE_COINGECKO_KEY
     
     useEffect(() => {
         const options = {
             method: 'GET',
-            headers: {accept: 'application/json', 'x-cg-demo-api-key': 'CG-LARPukp3ifBUXzYzGknC8SbF'}
+            headers: {accept: 'application/json', 'x-cg-demo-api-key': coinGeckoAPI}
           };
           
           fetch('https://api.coingecko.com/api/v3/search/trending', options)

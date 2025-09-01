@@ -6,6 +6,21 @@ import { useState, useEffect } from "react"
 export default function CoinsList() {
 
     const [coins, setCoins] = useState([])
+    const coinGeckoAPI = import.meta.env.VITE_COINGECKO_KEY
+
+    useEffect(() => {
+        const options = {
+        method: 'GET',
+        headers: {accept: 'application/json', 'x-cg-demo-api-key': coinGeckoAPI}
+        };
+
+        fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd', options)
+        .then(res => res.json())
+        .then(data => {
+                setCoins(data)            
+        })
+        .catch(err => console.error(err));
+    }, [])  
 
     const displayCoins = coins.map((coin) => {
         return (
@@ -22,14 +37,6 @@ export default function CoinsList() {
             />
         )
     })
-
-    useEffect(() => {
-        fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&per_page=20')
-            .then(res => res.json())
-            .then(data => {
-                setCoins(data)
-            })
-    }, [])
 
     return (
         <main>
