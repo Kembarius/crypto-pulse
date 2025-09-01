@@ -2,11 +2,37 @@ import './CoinsList.css'
 import Coin from './Coin'
 import { useState, useEffect } from "react"
 
+function useSyncScroll(className, dep) {
+    useEffect(() => {
+        const elements = document.querySelectorAll(`.${className}`)
+
+        function handleScroll(event) {
+            const { scrollLeft } = event.target
+            elements.forEach((el) => {
+                if (el !== event.target) {
+                    el.scrollLeft = scrollLeft
+                }
+            })
+        }
+
+        elements.forEach((el) => {
+            el.addEventListener("scroll", handleScroll);
+        });
+
+        return () => {
+            elements.forEach((el) =>  {
+                el.removeEventListener('scroll', handleScroll)
+            })
+        }
+    }, [className, dep])
+}
 
 export default function CoinsList() {
 
     const [coins, setCoins] = useState([])
     const coinGeckoAPI = import.meta.env.VITE_COINGECKO_KEY
+
+    useSyncScroll("second-details", coins.length);
 
     useEffect(() => {
         const options = {
@@ -20,7 +46,8 @@ export default function CoinsList() {
                 setCoins(data)            
         })
         .catch(err => console.error(err));
-    }, [])  
+    }, [coinGeckoAPI])  
+
 
     const displayCoins = coins.map((coin) => {
         return (

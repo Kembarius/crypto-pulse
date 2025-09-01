@@ -17,7 +17,7 @@ export default function Trending() {
             .then(res => res.json())
             .then(data => setTrending(data.coins))
             .catch(err => console.error(err));
-    }, []) 
+    }, [coinGeckoAPI]) 
 
     const displayTrendingCoins = trending.map((coin) => {
         return (
