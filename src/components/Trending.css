@@ -1,0 +1,112 @@
+.trending-container {
+    margin: 0 auto ;
+    padding: 1em;
+    border-radius: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+h2 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.trending-flex-wrap {
+    box-sizing: border-box;
+    display: flex;  
+    align-items: center;
+    gap: .5em;
+    overflow-x: auto; /* use auto instead of scroll so no scrollbar if not needed */
+    width: 1062px;
+}
+
+.coin-card {
+    margin-top: 15px;
+/*     border: 1px solid #484747; */
+    border-radius: 10px;
+    padding: 1em;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    flex-shrink: 0;
+}
+
+.coin-card:hover {
+    background-color: rgba(46, 46, 46, 0.91);
+    cursor: pointer;
+}
+
+.coin-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.img-container {
+    width: 85px;
+    height: 85px;
+    border-radius: 10px;
+}
+
+.details-wrap {
+    padding: 0 .75em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: max-content;
+}
+
+.details-wrap p {
+    margin: 0;
+}
+
+.min-w {
+    min-width: max-content;
+}
+
+.trending-flex-wrap::-webkit-scrollbar {
+    height: 8px;
+}
+  
+.trending-flex-wrap::-webkit-scrollbar-track {
+background: #1a1a1a;
+border-radius: 4px;
+}
+
+.trending-flex-wrap::-webkit-scrollbar-thumb {
+/* background: linear-gradient(135deg, #00e6e6, #007bff); */
+background: #515050;
+border-radius: 4px;
+transition: background 0.3s ease;
+}
+
+/* .trending-flex-wrap::-webkit-scrollbar-thumb:hover {
+background: linear-gradient(135deg, #00ffff, #3399ff);
+} */
+
+@media (max-width: 762px) {
+    .trending-flex-wrap {
+        width: 90vw;
+        gap: 0;
+    }
+    .coin-card {
+      padding: .5em;
+    }
+
+    .details-wrap {
+      font-size: .8rem;
+      
+    }
+    .img-container {
+        width: 50px;
+        height: 50px;
+        border-radius: 10px;
+    }
+}
+
+@media (max-width: 1100px) {
+    .trending-flex-wrap {
+        width: 90vw;
+    }
+}
