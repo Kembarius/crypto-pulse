@@ -167,6 +167,12 @@ button:hover {
     .coin-ticker {
         display: none;
     }
+    .fa-star {
+        font-size: .9rem;
+    }
+    p.coin-rank {
+        font-size: .85rem;
+    }
     p.coin-name {
         font-size: .8rem;
         margin-left: .85em;

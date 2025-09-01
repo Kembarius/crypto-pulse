@@ -1,6 +1,7 @@
-import './CoinsList.css'
+import { useEffect } from "react"
+import { CryptoSearchBar } from './CryptoSearchBar'
 import Coin from './Coin'
-import { useState, useEffect } from "react"
+import './CoinsList.css'
 
 function useSyncScroll(className, dep) {
     useEffect(() => {
@@ -27,27 +28,9 @@ function useSyncScroll(className, dep) {
     }, [className, dep])
 }
 
-export default function CoinsList() {
+export default function CoinsList({ coins, setCoins }) {
 
-    const [coins, setCoins] = useState([])
-    const coinGeckoAPI = import.meta.env.VITE_COINGECKO_KEY
-
-    useSyncScroll("second-details", coins.length);
-
-    useEffect(() => {
-        const options = {
-        method: 'GET',
-        headers: {accept: 'application/json', 'x-cg-demo-api-key': coinGeckoAPI}
-        };
-
-        fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd', options)
-        .then(res => res.json())
-        .then(data => {
-                setCoins(data)            
-        })
-        .catch(err => console.error(err));
-    }, [coinGeckoAPI])  
-
+    useSyncScroll("second-details", coins.length); 
 
     const displayCoins = coins.map((coin) => {
         return (
@@ -67,6 +50,10 @@ export default function CoinsList() {
 
     return (
         <main>
+            <CryptoSearchBar 
+                coins={coins}
+                setCoins={setCoins}
+            />
             <div className='coin-info-row-flex'>
                 <div className='first-details'>
                     <p className='coin-rank'>#</p>

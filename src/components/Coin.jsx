@@ -21,14 +21,16 @@ export default function Coin(props) {
                     alt={props.name}
                 />
                 <p className='coin-name'>{props.name}</p>
-                <p className='coin-ticker'>{props.ticker.toUpperCase()}</p>
+                <p className='coin-ticker'>{props.ticker?.toLocaleString() ?? 'N/A'}</p>
             </div>
             <div className='second-details'>
                 <button>Buy</button>
-                <p className='coin-price'>${props.price.toLocaleString()}</p>
-                <p className={`coin-change-pct ${props.pctChange >= 0 ? 'positive' : 'negative'}`}>{props.pctChange.toFixed(2)}%</p>
-                <p className='coin-volume'>${props.dailyVolume.toLocaleString()}</p>
-                <p className='coin-marketcap'>${props.marketCap.toLocaleString()}</p>
+                <p className='coin-price'>${props.price?.toLocaleString() ?? 'N/A'}</p>
+                <p className={`coin-change-pct ${(props.pctChange ?? 0) >= 0 ? 'positive' : 'negative'}`}>
+                    {props.pctChange?.toFixed(2) ?? 'N/A'}%
+                </p>
+                <p className='coin-volume'>${props.dailyVolume?.toLocaleString() ?? 'N/A'}</p>
+                <p className='coin-marketcap'>${props.marketCap?.toLocaleString() ?? 'N/A'}</p>
             </div>
         </div>
     )
