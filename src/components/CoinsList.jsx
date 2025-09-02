@@ -1,4 +1,5 @@
 import { useEffect } from "react"
+import { CryptoFilterToggle } from './CryptoFilterToggle'
 import { CryptoSearchBar } from './CryptoSearchBar'
 import { Link } from 'react-router'
 import Coin from './Coin'
@@ -54,6 +55,10 @@ export default function CoinsList({ coins, setCoins }) {
 
     return (
         <main>
+            <CryptoFilterToggle 
+                coins={coins}
+                setCoins={setCoins}            
+            />
             <CryptoSearchBar 
                 coins={coins}
                 setCoins={setCoins}

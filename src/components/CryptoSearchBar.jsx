@@ -60,27 +60,33 @@ export function CryptoSearchBar({ setCoins }) {
   };
 
   async function handleSearch() {
-    const options = {
-      method: 'GET',
-      headers: {accept: 'application/json', 'x-cg-demo-api-key': 'CG-LARPukp3ifBUXzYzGknC8SbF'}
-    };
+    try {
+      const coinGeckoAPI = import.meta.env.VITE_COINGECKO_KEY
 
-    fetch(`https://api.coingecko.com/api/v3/search?query=${searchTerm}`, options)
-      .then(res => res.json())
-      .then(data => {
-        const searchedCoinsArr = data.coins.map((coin) => {
-          return {
-            id: coin.id,
-            market_cap_rank: coin.market_cap_rank,
-            image: coin.large,
-            name: coin.name,
-            symbol: coin.symbol,
-          }
-        })
-        setCoins(searchedCoinsArr)
-        
-      })
-      .catch(err => console.error(err));    
+      const options = {
+        method: 'GET',
+        headers: {accept: 'application/json', 'x-cg-demo-api-key': coinGeckoAPI}
+      };
+
+      const searchRes = await fetch(`https://api.coingecko.com/api/v3/search?query=${encodeURIComponent(searchTerm)}`, options)
+
+      const searchData  = await searchRes.json()
+      const coinsArr10 = searchData.coins.slice(0,10) 
+      
+      if (coinsArr10.length === 0) {
+        setCoins([])
+        return
+      }
+
+      const ids = coinsArr10.map(coin => coin.id).join(',')
+      
+      const marketRes = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${ids}`, options)
+      const marketData = await marketRes.json()
+
+      setCoins(marketData)
+    } catch (error) {
+      console.error('Error fetching coins:', error)
+    }
   }
 
   return (
@@ -115,16 +121,6 @@ export function CryptoSearchBar({ setCoins }) {
           <button
             onClick={handleSearch}
             style={searchButtonStyle}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = '#0891b2';
-              e.currentTarget.style.transform = 'translateY(-1px)';
-              e.currentTarget.style.boxShadow = '0 4px 8px rgba(34, 211, 238, 0.3)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = '#22d3ee';
-              e.currentTarget.style.transform = 'translateY(0px)';
-              e.currentTarget.style.boxShadow = '0 2px 4px rgba(34, 211, 238, 0.2)';
-            }}
           >
             Search
           </button>

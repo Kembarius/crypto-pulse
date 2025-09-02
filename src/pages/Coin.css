@@ -4,26 +4,39 @@
     padding: .7rem 1rem;
     display: flex;
     flex-direction: column;
-    background-color: #26272b;
-    box-shadow: 0px 0px 12px #18191b;
-    border-radius: 8px;
 }
 
-h1 {
+.content h1 {
   font-size: 2rem;
+  text-align: left;
+}
+
+.info-stacked .coin-name {
+  font-size: 1.45rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.info-stacked {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  margin-left: 10px;
 }
 
 .rank {
-    margin: .5 0;
+    margin: 0;
 }
 
 .rank-btn {
     border: 1px solid aqua;
     box-shadow: 0px 0px 8px aqua;
     background-color: aqua;
-    color: #18191b  ;
+    color: #18191b;
+    font-weight: 500;
     border-radius: 8px;
-    padding: .2rem;
+    padding: .2rem .4rem;
 }
 
 .info {
@@ -34,17 +47,18 @@ h1 {
 .info .coin-heading {
     display: flex;
     align-items: center;
-    margin: 1rem 0;
+    margin: .5rem 0;
 }
 
 .info .coin-price {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: end;
 }
 
 .info p {
     padding-right: 1rem;
+    margin: 0;
 }
 
 table {

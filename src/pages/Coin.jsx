@@ -45,9 +45,9 @@ export function Coin() {
       <title>{title}</title>
       <div>
         <div className='coin-container'>
-          <div className='content'>
+          {/* <div className='content'>
             <h1>{coin.name}</h1>
-          </div>
+          </div> */}
           <div className='content'>
             <div className='rank'>
               <span className='rank-btn'>Rank # {coin.market_cap_rank}</span>
@@ -55,8 +55,11 @@ export function Coin() {
             <div className='info'>
               <div className='coin-heading'>
                 {coin.image ? <img src={coin.image.small} alt='' /> : null}
-                <p>{coin.name}</p>
-                {coin.symbol ? <p>{coin.symbol.toUpperCase()}/USD</p> : null}
+                <div className="info-stacked">
+                  <p className='coin-name'>{coin.name}</p>
+                  {coin.symbol ? <p>{coin.symbol.toUpperCase()}/USD</p> : null}
+                </div>
+                
 
               </div>
               <div className='coin-price'>

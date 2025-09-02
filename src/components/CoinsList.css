@@ -1,5 +1,5 @@
 main {
-    margin-top: 40px;
+    margin-top: 10px;
     margin-bottom: 65px;
     display: flex;
     flex-direction: column;
@@ -12,7 +12,6 @@ main {
 a {
     text-decoration: none;
     color: inherit;
-    align-items: center;
     width: 100%;
     display: flex;  
 }
@@ -121,6 +120,7 @@ button:hover {
 .coin-name {
     font-weight: 600;
     letter-spacing: 0.025pc;
+    overflow: hidden;
 }
 
 .coin-ticker {
@@ -172,6 +172,10 @@ button:hover {
     .coin-info-row-flex .coin-rank {
         margin-left: -15px;
     }
+    .coin-name {
+        overflow: auto;
+        scrollbar-width: none;
+    }
     .coin-ticker {
         display: none;
     }
@@ -181,7 +185,7 @@ button:hover {
     p.coin-rank {
         font-size: .85rem;
     }
-    p.coin-name {
+    .coin-row-flex p.coin-name {
         font-size: .8rem;
         margin-left: .85em;
     }
