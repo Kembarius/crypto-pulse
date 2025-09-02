@@ -5,6 +5,10 @@ header {
     gap: .65em;
 }
 
+header:hover, header:active {
+    cursor: pointer;
+}
+
 .header-icon {
     font-size: 3rem;
     color: aqua;
@@ -19,4 +23,13 @@ header span {
     h1 {
        font-size: 2.5rem;
     }
+}
+
+header a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .65em;
 }

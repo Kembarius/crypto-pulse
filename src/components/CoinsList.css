@@ -9,6 +9,14 @@ main {
     width: 100%;
 }
 
+a {
+    text-decoration: none;
+    color: inherit;
+    align-items: center;
+    width: 100%;
+    display: flex;  
+}
+
 .coin-info-row-flex {
     display: flex;
     align-items: center;

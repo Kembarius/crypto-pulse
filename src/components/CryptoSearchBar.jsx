@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Search } from 'lucide-react';
 
-export function CryptoSearchBar({ coins, setCoins }) {
+export function CryptoSearchBar({ setCoins }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [isFocused, setIsFocused] = useState(false);
 
@@ -77,7 +77,6 @@ export function CryptoSearchBar({ coins, setCoins }) {
             symbol: coin.symbol,
           }
         })
-        console.log(searchedCoinsArr)
         setCoins(searchedCoinsArr)
         
       })

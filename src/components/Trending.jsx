@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
-import './Trending.css'
+import { Link } from 'react-router'
 import TrendingCoin from './TrendingCoin'
+import './Trending.css'
 
 export default function Trending() {
     
@@ -21,13 +22,16 @@ export default function Trending() {
 
     const displayTrendingCoins = trending.map((coin) => {
         return (
-            <TrendingCoin 
-                key={coin.item.id}
-                name={coin.item.name}
-                image={coin.item.large}
-                price={coin.item.data.price}
-                pctChange={coin.item.data.price_change_percentage_24h.usd}
-            />
+            <Link to={`/coin/${coin.item.id}`} key={coin.item.id}>
+                <TrendingCoin 
+                    key={coin.item.id}
+                    name={coin.item.name}
+                    image={coin.item.large}
+                    price={coin.item.data.price}
+                    pctChange={coin.item.data.price_change_percentage_24h.usd}
+                />
+            </Link>
+
         )
     })
     

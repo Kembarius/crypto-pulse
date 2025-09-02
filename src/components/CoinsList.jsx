@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 import { CryptoSearchBar } from './CryptoSearchBar'
+import { Link } from 'react-router'
 import Coin from './Coin'
 import './CoinsList.css'
 
@@ -34,17 +35,20 @@ export default function CoinsList({ coins, setCoins }) {
 
     const displayCoins = coins.map((coin) => {
         return (
-            <Coin 
-                key={coin.id} 
-                rank={coin.market_cap_rank}
-                imageUrl={coin.image}
-                name={coin.name}
-                ticker={coin.symbol}
-                price={coin.current_price}
-                pctChange={coin.price_change_percentage_24h}
-                dailyVolume={coin.total_volume}
-                marketCap={coin.market_cap}
-            />
+            <Link to={`/coin/${coin.id}`} key={coin.id} >
+                <Coin 
+                    key={coin.id} 
+                    rank={coin.market_cap_rank}
+                    imageUrl={coin.image}
+                    name={coin.name}
+                    ticker={coin.symbol}
+                    price={coin.current_price}
+                    pctChange={coin.price_change_percentage_24h}
+                    dailyVolume={coin.total_volume}
+                    marketCap={coin.market_cap}
+                />            
+            </Link>
+
         )
     })
 
