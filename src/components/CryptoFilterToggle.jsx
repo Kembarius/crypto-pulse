@@ -8,13 +8,12 @@ export function CryptoFilterToggle({ setCoins, favoriteCoins, setIsLoading }) {
     if (filter === 'saved') {
       try {
         setCoins([])
-        setIsLoading(true)
         if (favoriteCoins.length > 0) {
-          const coinGeckoAPI = import.meta.env.VITE_COINGECKO_KEY
+          setIsLoading(true)
 
           const options = {
             method: 'GET',
-            headers: {accept: 'application/json', 'x-cg-demo-api-key': coinGeckoAPI}
+            headers: {accept: 'application/json', 'x-cg-demo-api-key': import.meta.env.VITE_COINGECKO_KEY}
           }
 
           const favoritesRes = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${favoriteCoins.join(',')}`, options)
@@ -28,10 +27,9 @@ export function CryptoFilterToggle({ setCoins, favoriteCoins, setIsLoading }) {
         console.err(err)
       }
     } else { 
-      const coinGeckoAPI = import.meta.env.VITE_COINGECKO_KEY
       const options = {
       method: 'GET',
-      headers: {accept: 'application/json', 'x-cg-demo-api-key': coinGeckoAPI}
+      headers: {accept: 'application/json', 'x-cg-demo-api-key': import.meta.env.VITE_COINGECKO_KEY}
       }
 
       fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd', options)
