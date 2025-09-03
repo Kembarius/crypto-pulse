@@ -1,12 +1,45 @@
 import { useState } from 'react'
 
-export function CryptoFilterToggle({ onFilterChange }) {
+export function CryptoFilterToggle({ setCoins, favoriteCoins, setIsLoading }) {
   const [activeFilter, setActiveFilter] = useState('crypto')
 
-  function handleFilterChange(filter) {
+  async function handleFilterChange(filter) {
     setActiveFilter(filter)
-    if (onFilterChange) {
-      onFilterChange(filter)
+    if (filter === 'saved') {
+      try {
+        setCoins([])
+        setIsLoading(true)
+        if (favoriteCoins.length > 0) {
+          const coinGeckoAPI = import.meta.env.VITE_COINGECKO_KEY
+
+          const options = {
+            method: 'GET',
+            headers: {accept: 'application/json', 'x-cg-demo-api-key': coinGeckoAPI}
+          }
+
+          const favoritesRes = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${favoriteCoins.join(',')}`, options)
+
+          const favoritesData = await favoritesRes.json()
+          
+          setIsLoading(false)
+          setCoins(favoritesData)
+        }
+      } catch (err) {
+        console.err(err)
+      }
+    } else { 
+      const coinGeckoAPI = import.meta.env.VITE_COINGECKO_KEY
+      const options = {
+      method: 'GET',
+      headers: {accept: 'application/json', 'x-cg-demo-api-key': coinGeckoAPI}
+      }
+
+      fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd', options)
+      .then(res => res.json())
+      .then(data => {
+        setCoins(data)         
+      })
+      .catch(err => console.error(err))
     }
   }
 
@@ -23,7 +56,7 @@ export function CryptoFilterToggle({ onFilterChange }) {
     border: '2px solid #2b2b2bff',
     overflow: 'hidden',
     position: 'relative'
-  };
+  }
 
   const buttonStyle = {
     flex: 1,
@@ -37,7 +70,7 @@ export function CryptoFilterToggle({ onFilterChange }) {
     transition: 'all 0.3s ease',
     position: 'relative',
     zIndex: 2
-  };
+  }
 
   const activeButtonStyle = {
     ...buttonStyle,
@@ -46,7 +79,7 @@ export function CryptoFilterToggle({ onFilterChange }) {
     borderRadius: '4px',
     margin: '2px',
     boxShadow: '0 1px 2px rgba(34, 211, 238, 0.3)'
-  };
+  }
 
   return (
     <div style={containerStyle}>
@@ -56,14 +89,14 @@ export function CryptoFilterToggle({ onFilterChange }) {
           onClick={() => handleFilterChange('crypto')}
           onMouseEnter={(e) => {
             if (activeFilter !== 'crypto') {
-              e.currentTarget.style.color = '#d1d5db';
-              e.currentTarget.style.backgroundColor = 'rgba(61, 61, 61, 1)';
+              e.currentTarget.style.color = '#d1d5db'
+              e.currentTarget.style.backgroundColor = 'rgba(61, 61, 61, 1)'
             }
           }}
           onMouseLeave={(e) => {
             if (activeFilter !== 'crypto') {
-              e.currentTarget.style.color = '#9ca3af';
-              e.currentTarget.style.backgroundColor = 'transparent';
+              e.currentTarget.style.color = '#9ca3af'
+              e.currentTarget.style.backgroundColor = 'transparent'
             }
           }}
         >
@@ -75,14 +108,14 @@ export function CryptoFilterToggle({ onFilterChange }) {
           onClick={() => handleFilterChange('saved')}
           onMouseEnter={(e) => {
             if (activeFilter !== 'saved') {
-              e.currentTarget.style.color = '#d1d5db';
-              e.currentTarget.style.backgroundColor = 'rgba(61, 61, 61, 1)';
+              e.currentTarget.style.color = '#d1d5db'
+              e.currentTarget.style.backgroundColor = 'rgba(61, 61, 61, 1)'
             }
           }}
           onMouseLeave={(e) => {
             if (activeFilter !== 'saved') {
-              e.currentTarget.style.color = '#9ca3af';
-              e.currentTarget.style.backgroundColor = 'transparent';
+              e.currentTarget.style.color = '#9ca3af'
+              e.currentTarget.style.backgroundColor = 'transparent'
             }
           }}
         >
@@ -90,5 +123,5 @@ export function CryptoFilterToggle({ onFilterChange }) {
         </button>
       </div>
     </div>
-  );
-};
+  )
+}

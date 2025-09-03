@@ -6,9 +6,10 @@ import { Coin } from './pages/Coin'
 
 function App() {
   const [coins, setCoins] = useState([])
-  const coinGeckoAPI = import.meta.env.VITE_COINGECKO_KEY
 
   useEffect(() => {
+    const coinGeckoAPI = import.meta.env.VITE_COINGECKO_KEY
+
     const options = {
     method: 'GET',
     headers: {accept: 'application/json', 'x-cg-demo-api-key': coinGeckoAPI}
@@ -19,8 +20,8 @@ function App() {
     .then(data => {
       setCoins(data)         
     })
-    .catch(err => console.error(err));
-  }, [coinGeckoAPI]) 
+    .catch(err => console.error(err))
+  }, []) 
 
   return (
     <>

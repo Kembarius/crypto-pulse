@@ -1,14 +1,14 @@
-import { useState } from 'react';
-import { Search } from 'lucide-react';
+import { useState } from 'react'
+import { Search } from 'lucide-react'
 
 export function CryptoSearchBar({ setCoins }) {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [isFocused, setIsFocused] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('')
+  const [isFocused, setIsFocused] = useState(false)
 
   const containerStyle = {
     width: '100%',
     padding: '12px 16px'
-  };
+  }
 
   const searchContainerStyle = {
     position: 'relative',
@@ -19,7 +19,7 @@ export function CryptoSearchBar({ setCoins }) {
     transition: 'all 0.3s ease',
     border: isFocused ? '2px solid #22d3ee' : '2px solid transparent',
     boxShadow: isFocused ? '0 0 0 1px rgba(46, 46, 46, 0.91)' : 'none'
-  };
+  }
 
   const searchIconStyle = {
     position: 'absolute',
@@ -28,7 +28,7 @@ export function CryptoSearchBar({ setCoins }) {
     height: '20px',
     color: (isFocused || searchTerm) ? '#22d3ee' : '#9ca3af',
     transition: 'color 0.3s ease'
-  };
+  }
 
   const inputStyle = {
     width: '100%',
@@ -41,7 +41,7 @@ export function CryptoSearchBar({ setCoins }) {
     fontSize: '16px',
     border: 'none',
     outline: 'none'
-  };
+  }
 
   const searchButtonStyle = {
     position: 'absolute',
@@ -57,7 +57,7 @@ export function CryptoSearchBar({ setCoins }) {
     transition: 'all 0.2s ease',
     display: searchTerm ? 'block' : 'none',
     boxShadow: '0 2px 4px rgba(34, 211, 238, 0.2)'
-  };
+  }
 
   async function handleSearch() {
     try {
@@ -66,7 +66,7 @@ export function CryptoSearchBar({ setCoins }) {
       const options = {
         method: 'GET',
         headers: {accept: 'application/json', 'x-cg-demo-api-key': coinGeckoAPI}
-      };
+      }
 
       const searchRes = await fetch(`https://api.coingecko.com/api/v3/search?query=${encodeURIComponent(searchTerm)}`, options)
 
@@ -95,12 +95,12 @@ export function CryptoSearchBar({ setCoins }) {
         style={searchContainerStyle}
         onMouseEnter={(e) => {
           if (!isFocused) {
-            e.currentTarget.style.backgroundColor = 'rgba(46, 46, 46, 0.85)';
+            e.currentTarget.style.backgroundColor = 'rgba(46, 46, 46, 0.85)'
           }
         }}
         onMouseLeave={(e) => {
           if (!isFocused) {
-            e.currentTarget.style.backgroundColor = 'rgba(46, 46, 46, 0.91)';
+            e.currentTarget.style.backgroundColor = 'rgba(46, 46, 46, 0.91)'
           }
         }}
       >
@@ -129,13 +129,13 @@ export function CryptoSearchBar({ setCoins }) {
 
       <style>{`
         .crypto-search-input::placeholder {
-          color: #9ca3af;
+          color: #9ca3af
         }
         
         .crypto-search-input:focus::placeholder {
-          color: #6b7280;
+          color: #6b7280
         }
       `}</style>
     </div>
-  );
-};
+  )
+}
