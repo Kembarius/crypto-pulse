@@ -1,12 +1,34 @@
-# React + Vite
+CryptoPulse 🚀
+A modern cryptocurrency tracking application built with React. Track live prices, discover trending coins, and view detailed coin analytics.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🌐 Live Demo
+✨ Features
+Real-time crypto data with live prices and market caps
+Detailed coin pages with price history (1h, 24h, 7d, 14d, 30d, 1yr)
+Market statistics - 24h high/low, market cap, circulating supply
+Trending cryptocurrencies discovery
+Search functionality to find specific coins
+Responsive design optimized for all devices
+🛠️ Tech Stack
+React.js - Frontend framework
+CSS3 - Modern styling with dark theme
+Cryptocurrency API - Real-time market data
+Vercel - Deployment platform
+🚀 Quick Start
+bash
+# Clone the repo
+git clone [your-repo-url]
 
-Currently, two official plugins are available:
+# Install dependencies
+npm install
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Start development server
+npm start
+📊 Key Data Points
+Current prices and percentage changes
+Market cap and trading volume
+Price history across multiple timeframes
+24-hour high/low values
+Circulating supply information
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+⭐ Star this repo if you found it useful!
